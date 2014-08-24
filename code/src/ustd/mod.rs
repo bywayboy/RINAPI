@@ -14,5 +14,6 @@ eg: type PVOID = *mut c_void; type HANDLE = PVOID; type WCHAR = wchar_t;
 </summary>
 ********************************************************************************/
 
+pub mod plateform;
 pub mod types;
 pub mod ui;
