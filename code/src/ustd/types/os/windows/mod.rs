@@ -4,5 +4,6 @@
 	</summary>
 **/
 
+pub mod convertion;
 pub mod win32;
 pub mod win64;

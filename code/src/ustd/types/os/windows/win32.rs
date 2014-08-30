@@ -16,8 +16,14 @@ pub type BOOL = c_int;
 // WinDef.h:169 => typedef void far *LPVOID;
 pub type LPVOID = *mut c_void;
 
+// WinDef.h:155 => typedef unsigned short WORD;
+pub type WORD = c_ushort;
+
 // intsafe.h:45 => typedef unsigned long DWORD;
 pub type DWORD = c_ulong;
+
+// WinDef.h:215 => typedef WORD ATOM;
+pub type ATOM = WORD;
 
 // WinNT.h:344 => typedef wchar_t WCHAR;
 pub type WCHAR = wchar_t;
@@ -51,19 +57,3 @@ pub type HCURSOR = HANDLE;
 
 // WinDef.h:261 => DECLARE_HANDLE(HBRUSH);
 pub type HBRUSH = HANDLE;
-
-
-
-
-pub trait RustBool {
-	fn bool(&self) -> bool;
-}
-
-impl RustBool for BOOL {
-	fn bool(&self) -> bool {
-		match *self {
-			0 => false,
-			_ => true
-		}
-	}
-}

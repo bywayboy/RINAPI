@@ -1,7 +1,7 @@
 mod WindowsAPI;
 
-pub fn GetModuleHandle(moduleName : &str) -> Module {
+pub fn GetModuleHandle(name : Option<Text>) -> Module {
 	unsafe {
-		WindowsAPI::GetModuleHandle(std::ptr::mut_null()) as Module
+		WindowsAPI::GetModuleHandleW(name.unwrap_or(std::ptr::mut_null()))
 	}
 }

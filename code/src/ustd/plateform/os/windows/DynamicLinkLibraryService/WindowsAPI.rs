@@ -3,7 +3,7 @@ use ustd::types::os::windows::win32::{
 };
 
 extern "stdcall" {
-	pub fn GetModuleHandle(
+	pub fn GetModuleHandleW(
 		/* _In_opt_ */ lpModuleName : LPCTSTR
 	) -> HMODULE /* WINAPI */;
 }

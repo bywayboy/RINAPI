@@ -1,14 +1,14 @@
 
 mod WindowsAPI;
 
-pub fn LoadIcon(app : Application , iconName : &str) -> Icon {
+pub fn LoadIcon(app : Application , name : Text) -> Icon {
 	unsafe {
-		WindowsAPI::LoadIcon(app, ) as Icon
+		WindowsAPI::LoadIconW(app, name)
 	}
 }
 
-pub fn LoadStandardIcon(iconName : &str) -> Icon {
+pub fn LoadStandardIcon(name : Text) -> Icon {
 	unsafe {
-		WindowsAPI::LoadIcon() as Icon
+		WindowsAPI::LoadIconW()
 	}
 }
