@@ -1,6 +1,6 @@
 /********************************************************************************
 <summary>
-源碼路徑: ustd::ui::os::windows::Window
+源碼路徑: ustd
 
 關於 Windows API 中所有 C 語言類型的轉換:
 
@@ -14,6 +14,4 @@ eg: type PVOID = *mut c_void; type HANDLE = PVOID; type WCHAR = wchar_t;
 </summary>
 ********************************************************************************/
 
-pub mod plateform;
-pub mod types;
-pub mod ui;
+pub mod os;
