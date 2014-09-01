@@ -1,13 +1,15 @@
 extern crate libc;
 
 use self::libc::types::os::arch::c95::{
-	c_int , c_ulong , wchar_t
+	c_int , c_ulong , wchar_t , c_uint , c_ushort
 };
 use self::libc::types::common::c95::c_void;
 
 // Standard C types in Microsoft C
 pub type CCINT = c_int;
 
+// WinDef.h:173 => typedef unsigned int UINT;
+pub type UINT = c_uint;
 
 pub type BOOL = c_int;
 
@@ -57,3 +59,10 @@ pub type HCURSOR = HANDLE;
 
 // WinDef.h:261 => DECLARE_HANDLE(HBRUSH);
 pub type HBRUSH = HANDLE;
+
+// WinDef.h:281 => typedef HINSTANCE HMODULE;      
+// /*HMODULEs can be used in place of HINSTANCEs*/
+pub type HMODULE = HINSTANCE;
+
+// WinDef.h:249 => DECLARE_HANDLE(HGDIOBJ);
+pub type HGDIOBJ = HANDLE;

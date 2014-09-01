@@ -1,9 +1,9 @@
-use ustd::os::windows::dev::ui::etypes::MessageBoxStyle;
-
 /**
     WinUser.h:7444
 **/
 pub mod Button {
+    use ustd::os::windows::dev::ui::etypes::MessageBoxStyle;
+
     pub static            OnlyOk : MessageBoxStyle = 0x00000000 ;
     pub static          OkCancel : MessageBoxStyle = 0x00000001 ;
     pub static  AbortRetryIgnore : MessageBoxStyle = 0x00000002 ;
@@ -18,6 +18,8 @@ pub mod Button {
     WinUser.h:7455
 **/
 pub mod Icon {
+    use ustd::os::windows::dev::ui::etypes::MessageBoxStyle;
+
     pub static        Hand : MessageBoxStyle = 0x00000010   ;
     pub static    Question : MessageBoxStyle = 0x00000020   ;
     pub static Exclamation : MessageBoxStyle = 0x00000030   ;
@@ -33,6 +35,8 @@ pub mod Icon {
     WinUser.h:7469
 **/
 pub mod DefaultButton {
+    use ustd::os::windows::dev::ui::etypes::MessageBoxStyle;
+
     pub static  First : MessageBoxStyle = 0x00000000 ;
     pub static Second : MessageBoxStyle = 0x00000100 ;
     pub static  Third : MessageBoxStyle = 0x00000200 ;
@@ -43,6 +47,8 @@ pub mod DefaultButton {
     WinUser.h:7476
 **/
 pub mod Modal {
+    use ustd::os::windows::dev::ui::etypes::MessageBoxStyle;
+
     pub static Application : MessageBoxStyle = 0x00000000 ;
     pub static      System : MessageBoxStyle = 0x00001000 ;
     pub static        Task : MessageBoxStyle = 0x00002000 ;
@@ -52,6 +58,8 @@ pub mod Modal {
     WinUser.h:7483
 **/
 pub mod OtherOption {
+    use ustd::os::windows::dev::ui::etypes::MessageBoxStyle;
+    
     pub static             NoFocus : MessageBoxStyle = 0x00008000 ;
     pub static       SetForeground : MessageBoxStyle = 0x00010000 ;
     pub static  DefaultDesktopOnly : MessageBoxStyle = 0x00020000 ;

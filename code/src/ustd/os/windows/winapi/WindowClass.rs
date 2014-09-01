@@ -1,3 +1,10 @@
+use ustd::os::windows::common::types::win32::{
+    LPCTSTR , HINSTANCE , ATOM , BOOL
+};
+
+use ustd::os::windows::dev::ui::WindowClass::WNDCLASS;
+use ustd::os::windows::dev::ui::WindowClassExtra::WNDCLASSEX;
+
 extern "stdcall" {
     fn RegisterClass(
         /*   _In_   */ lpWndClass : *const WNDCLASS

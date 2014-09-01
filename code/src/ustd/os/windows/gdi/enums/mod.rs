@@ -1,1 +1,1 @@
-pub mod StockObjects;
+pub mod StockLogicalObjects;

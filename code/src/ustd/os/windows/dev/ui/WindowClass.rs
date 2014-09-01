@@ -1,8 +1,26 @@
 /**
     Window Class Structures (Windows) / WNDCLASS structure (Windows)
 **/
+extern crate std;
 
 use ustd::os::windows::winapi;
+
+use ustd::os::windows::common::types::win32::{
+    UINT , WNDPROC , CCINT , HINSTANCE , HICON , HCURSOR , HBRUSH , LPCTSTR
+};
+
+use ustd::os::windows::dev::ui::{
+    Application , Cursor , Icon , Menu , Text , WindowProcedure
+};
+
+use ustd::os::windows::dev::ui::Atom;
+
+use ustd::os::windows::gdi::Brush;
+
+use ustd::os::windows::dev::ui::service::WindowService;
+
+use ustd::os::windows::dev::ui::enums::WindowClassStyles;
+use ustd::os::windows::dev::ui::etypes::WindowClassStyle;
 
 pub struct WindowClass {
     raw: RawWindowClass
@@ -27,16 +45,16 @@ impl WindowClass {
     pub fn new() -> WindowClass {
         WindowClass {
             raw : RawWindowClass {
-                        style : WindowClassStyle.VerticalRedraw | WindowClassStyle.HorizontalRedraw , 
-                  lpfnWndProc : std::ptr::mut_null()                                                , 
-                   cbClsExtra : 0                                                                   ,
-                   cbWndExtra : 0                                                                   ,
-                    hInstance : std::ptr::mut_null()                                                ,
-                        hIcon : std::ptr::mut_null()                                                ,
-                      hCursor : std::ptr::mut_null()                                                ,
-                hbrBackground : std::ptr::mut_null()                                                ,
-                 lpszMenuName : "Application Menu".asText()                                         ,
-                lpszClassName : "Class".asText()                                                    ,
+                        style : WindowClassStyles::VerticalRedraw | WindowClassStyles::HorizontalRedraw , 
+                  lpfnWndProc : std::ptr::mut_null()                                                  , 
+                   cbClsExtra : 0                                                                     ,
+                   cbWndExtra : 0                                                                     ,
+                    hInstance : std::ptr::mut_null()                                                  ,
+                        hIcon : std::ptr::mut_null()                                                  ,
+                      hCursor : std::ptr::mut_null()                                                  ,
+                hbrBackground : std::ptr::mut_null()                                                  ,
+                 lpszMenuName : "Application Menu".asText()                                           ,
+                lpszClassName : "Class".asText()                                                      ,
             }
         }
     }
@@ -83,7 +101,7 @@ impl WindowClass {
 
     pub fn register(&self) -> Atom {
         unsafe {
-            WindowsAPI::RegisterClass(self)
+            winapi::WindowClass::RegisterClass(self)
         }
     }
 

@@ -1,7 +1,3 @@
-use ustd::os::windows::common::types::win32::{
-    HWND , CCINT , BOOL
-};
-
 /**
     <summary>
         All defined in MSDN: [Window Functions (Windows)]
@@ -9,7 +5,7 @@ use ustd::os::windows::common::types::win32::{
 **/
 
 use ustd::os::windows::common::types::win32::{
-    LPCTSTR , DWORD , CCINT , HWND , HMENU , HINSTANCE , LPVOID
+    LPCTSTR , DWORD , CCINT , HWND , HMENU , HINSTANCE , LPVOID , BOOL
 };
 
 extern "stdcall" {

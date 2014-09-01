@@ -1,3 +1,7 @@
+use ustd::os::windows::common::types::win32::{
+    BOOL
+};
+
 pub trait ToRustBoolConvertion {
     fn bool(&self) -> bool;
 }

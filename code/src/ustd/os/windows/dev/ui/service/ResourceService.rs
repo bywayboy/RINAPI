@@ -1,4 +1,10 @@
+extern crate std;
+
 use ustd::os::windows::winapi;
+
+use ustd::os::windows::dev::ui::{
+    Application , Text , Icon , Cursor
+};
 
 pub fn LoadIcon(app : Option<Application> , name : Text) -> Icon {
 	unsafe {
@@ -8,6 +14,6 @@ pub fn LoadIcon(app : Option<Application> , name : Text) -> Icon {
 
 pub fn LoadCursor(app : Option<Application> , name : Text) -> Cursor {
 	unsafe {
-		winapi::Icon::LoadCursorW(app.unwrap_or(std::ptr::mut_null()) , name)
+		winapi::Cursor::LoadCursorW(app.unwrap_or(std::ptr::mut_null()) , name)
 	}
 }
