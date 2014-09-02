@@ -3,7 +3,7 @@ use ustd::os::windows::common::types::win32::{
 };
 
 extern "stdcall" {
-    fn MessageBoxW(
+    pub fn MessageBoxW(
         /* _In_opt_ */      hWnd : HWND     , 
         /* _In_opt_ */    lpText : LPCTSTR  , 
         /* _In_opt_ */ lpCaption : LPCTSTR  , 

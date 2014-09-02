@@ -9,13 +9,20 @@ use ustd::os::windows::common::types::win32::{
     UINT , WNDPROC , CCINT , HINSTANCE , HICON , HCURSOR , HBRUSH , LPCTSTR
 };
 
-use ustd::os::windows::dev::ui::{
-    Application , Cursor , Icon , Menu , Text , WindowProcedure , Atom
-};
+use ustd::os::windows::common::types::convertion::ToWindowTextConvertion;
+
+use ustd::os::windows::dev::ui::Application::Application;
+use ustd::os::windows::dev::ui::Cursor::Cursor;
+use ustd::os::windows::dev::ui::Icon::Icon;
+use ustd::os::windows::dev::ui::Menu::Menu;
+use ustd::os::windows::dev::ui::Text::Text;
+
+use ustd::os::windows::dev::ui::utypes::WindowProcedure;
+use ustd::os::windows::dev::ui::utypes::Atom;
 
 use ustd::os::windows::dev::ui::service::WindowService;
 
-use ustd::os::windows::gdi::Brush;
+use ustd::os::windows::gdi::Brush::Brush;
 
 use ustd::os::windows::dev::ui::enums::WindowClassStyles;
 use ustd::os::windows::dev::ui::etypes::WindowClassStyle;
@@ -48,7 +55,7 @@ impl WindowClassExtra {
                        cbSize : std::mem::size_of::<WNDCLASSEX>() as UINT   ,
                         style : WindowClassStyles::VerticalRedraw   | 
                                 WindowClassStyles::HorizontalRedraw         , 
-                  lpfnWndProc : std::ptr::mut_null()                        , 
+                  lpfnWndProc : std::ptr::null()                        , 
                    cbClsExtra : 0                                           ,
                    cbWndExtra : 0                                           ,
                     hInstance : std::ptr::mut_null()                        ,
@@ -74,11 +81,11 @@ impl WindowClassExtra {
         self.raw.lpfnWndProc = proce;
     }
 
-    pub fn setClassExtraSize(&mut self , size : int) {
+    pub fn setClassExtraSize(&mut self , size : i32) {
         self.raw.cbClsExtra = size;
     }
 
-    pub fn setWindowExtraSize(&mut self , size : int) {
+    pub fn setWindowExtraSize(&mut self , size : i32) {
         self.raw.cbWndExtra = size;
     }
 
@@ -112,7 +119,7 @@ impl WindowClassExtra {
 
     pub fn register(&self) -> Atom {
         unsafe {
-            winapi::WindowClass::RegisterClassEx(self)
+            winapi::WindowClass::RegisterClassExW(&self.raw)
         }
     }
 

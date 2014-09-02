@@ -6,15 +6,15 @@ use ustd::os::windows::dev::ui::WindowClass::WNDCLASS;
 use ustd::os::windows::dev::ui::WindowClassExtra::WNDCLASSEX;
 
 extern "stdcall" {
-    fn RegisterClass(
+    pub fn RegisterClassW(
         /*   _In_   */ lpWndClass : *const WNDCLASS
     ) -> ATOM /* WINAPI */;
 
-    fn RegisterClassEx(
+    pub fn RegisterClassExW(
         /*   _In_   */ lpwcx : *const WNDCLASSEX
     ) -> ATOM /* WINAPI */;
 
-    fn UnregisterClass(
+    pub fn UnregisterClassW(
         /*   _In_   */ lpClassName : LPCTSTR    , 
         /* _In_opt_ */   hInstance : HINSTANCE
     ) -> BOOL /* WINAPI */;

@@ -9,7 +9,7 @@ use ustd::os::windows::common::types::win32::{
 };
 
 extern "stdcall" {
-    pub fn CreateWindow(
+    pub fn CreateWindowW(
         /* _In_opt_ */ lpClassName  : LPCTSTR   ,
         /* _In_opt_ */ lpWindowName : LPCTSTR   ,
         /*   _In_   */ dwStyle      : DWORD     ,

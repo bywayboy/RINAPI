@@ -1,7 +1,7 @@
 extern crate libc;
 
 use self::libc::types::os::arch::c95::{
-	c_int , c_ulong , wchar_t , c_uint , c_ushort
+	c_int , c_long , c_ulong , wchar_t , c_uint , c_ushort
 };
 use self::libc::types::common::c95::c_void;
 
@@ -14,9 +14,6 @@ pub type UINT = c_uint;
 pub type BOOL = c_int;
 
 pub type WNDPROC = *const c_void;
-
-// WinDef.h:169 => typedef void far *LPVOID;
-pub type LPVOID = *mut c_void;
 
 // WinDef.h:155 => typedef unsigned short WORD;
 pub type WORD = c_ushort;
@@ -38,6 +35,9 @@ pub type LPCTSTR = LPCWSTR;
 
 // WinNT.h:289 => typedef void *PVOID;
 pub type PVOID = *mut c_void;
+
+// WinDef.h:169 => typedef void far *LPVOID;
+pub type LPVOID = *mut c_void;
 
 // WinNT.h:522 => typedef PVOID HANDLE;
 pub type HANDLE = PVOID;
@@ -63,6 +63,18 @@ pub type HBRUSH = HANDLE;
 // WinDef.h:281 => typedef HINSTANCE HMODULE;      
 // /*HMODULEs can be used in place of HINSTANCEs*/
 pub type HMODULE = HINSTANCE;
+
+// intsafe.h:57 => typedef [public] unsigned __int3264 UINT_PTR;
+pub type UINT_PTR = c_uint;
+
+// intsafe.h:58 => typedef [public] __int3264 LONG_PTR;
+pub type LONG_PTR = c_long;
+
+// WinDef.h:183 => typedef UINT_PTR WPARAM;
+pub type WPARAM = UINT_PTR;
+
+// WinDef.h:184 => typedef LONG_PTR LPARAM;
+pub type LPARAM = LONG_PTR;
 
 // WinDef.h:249 => DECLARE_HANDLE(HGDIOBJ);
 pub type HGDIOBJ = HANDLE;

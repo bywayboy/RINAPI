@@ -1,8 +1,9 @@
 extern crate std;
 
-use ustd::os::windows::dev::ui::{
-    Application , Text
-};
+use ustd::os::windows::dev::ui::Application::Application;
+use ustd::os::windows::dev::ui::Window::Window;
+use ustd::os::windows::dev::ui::Text::Text;
+
 use ustd::os::windows::dev::ss::service::DllService;
 use ustd::os::windows::dev::ui::etypes::{
     DialogBoxCommand , MessageBoxStyle
@@ -15,7 +16,7 @@ pub fn Application() -> Application {
 }
 
 pub fn MessageBox(
-      app : Option<Application> , 
+      app : Option<Window> , 
      text : Option<Text>        ,
     title : Option<Text>        ,
     style : MessageBoxStyle
@@ -34,8 +35,8 @@ pub fn ApiMessageBox(
     unsafe {
         winapi::DialogBox::MessageBoxW(
             app.unwrap_or(std::ptr::mut_null())     , 
-            text.unwrap_or(std::ptr::mut_null())    ,
-            title.unwrap_or(std::ptr::mut_null())   ,
+            text.unwrap_or(std::ptr::null())    ,
+            title.unwrap_or(std::ptr::null())   ,
             style
         )
     }

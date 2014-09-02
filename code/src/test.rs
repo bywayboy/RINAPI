@@ -6,14 +6,17 @@
 
 **/
 
-/**
-use HWND = ustd::types::os::windows::win32::HWND;
-use Window = ustd::ui::os::windows::types::Window::Window;
-**/
+
+use ustd::os::windows::common::types::convertion::ToWindowTextConvertion;
+use ustd::os::windows::quick::ApplicationService;
+use ustd::os::windows::dev::ui::enums::MessageBoxStyles;
+
 
 mod ustd;
 
 
 fn main() {
-	println!("like what you want!!!");
+	ApplicationService::MessageBox(None,Some("Hello".asText()),None,MessageBoxStyles::Button::OkCancel);
+
+	//println!("like what you want!!! {} , {} " , "ABC".asText() , "DEF".asText());
 }
