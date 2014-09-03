@@ -4,8 +4,6 @@ use ustd::os::windows::dev::ui::service::ResourceService;
 use ustd::os::windows::dev::ui::Text::Text;
 use ustd::os::windows::dev::ui::Icon::Icon;
 
-use ustd::os::windows::winapi;
-
 pub type Application = HINSTANCE;
 
 trait IconFunctionInApplication {

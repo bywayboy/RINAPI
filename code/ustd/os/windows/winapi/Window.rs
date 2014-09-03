@@ -8,8 +8,18 @@ use ustd::os::windows::common::types::win32::{
     LPCTSTR , DWORD , CCINT , HWND , HMENU , HINSTANCE , LPVOID , BOOL
 };
 
+#[link(name = "User32")]
 extern "stdcall" {
-    pub fn CreateWindowW(
+    /**
+        no CreateWindowW implemented in User32:
+        WinUser.h:3892 =>
+        #define CreateWindowW(lpClassName, lpWindowName, dwStyle, x, y,\
+                        nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam)\
+                CreateWindowExW(0L, lpClassName, lpWindowName, dwStyle, x, y,\
+                        nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam)
+    **/
+    pub fn CreateWindowExW(
+        /*   _In_   */    dwExStyle : DWORD     ,
         /* _In_opt_ */ lpClassName  : LPCTSTR   ,
         /* _In_opt_ */ lpWindowName : LPCTSTR   ,
         /*   _In_   */ dwStyle      : DWORD     ,

@@ -1,7 +1,7 @@
 use ustd::os::windows::winapi;
 
 use ustd::os::windows::common::types::win32::{
-    HWND , CCINT , BOOL
+    HWND
 };
 use ustd::os::windows::common::types::convertion::ToRustBoolConvertion;
 use ustd::os::windows::dev::ui::etypes::WindowShowStyleCommand;

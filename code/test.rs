@@ -11,9 +11,6 @@ use ustd::os::windows::common::types::convertion::ToWindowTextConvertion;
 use ustd::os::windows::quick::ApplicationService;
 use MBSB = ustd::os::windows::dev::ui::enums::MessageBoxStyles::Button;
 
-#[allow(dead_code)]
-#[allow(non_snake_case_functions)]
-#[warn(unused_variable)]
 mod ustd;
 
 fn cref(p : &int) {
@@ -31,7 +28,7 @@ fn main() {
 	let txt1 = "Hello".asText();
 	let txt2 = "World".asText();
 
-	ApplicationService::MessageBox(None,Some(txt1.as_ptr()),Some(txt2.as_ptr()),MBSB::OkCancel);
+	ApplicationService::MessageBox(Some(txt1.as_ptr()),Some(txt2.as_ptr()),MBSB::OkCancel);
 
 	cref(&7);
 	cptr(&7);

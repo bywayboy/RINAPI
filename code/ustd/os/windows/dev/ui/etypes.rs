@@ -7,3 +7,4 @@ pub type MessageBoxStyle = UINT;
 pub type WindowClassStyle = UINT;
 pub type WindowShowStyleCommand = CCINT;
 pub type WindowStyle = DWORD;
+pub type ExtendedWindowStyle = DWORD;

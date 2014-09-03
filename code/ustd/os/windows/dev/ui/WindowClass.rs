@@ -12,7 +12,6 @@ use ustd::os::windows::common::types::win32::{
 use ustd::os::windows::dev::ui::Application::Application;
 use ustd::os::windows::dev::ui::Cursor::Cursor;
 use ustd::os::windows::dev::ui::Icon::Icon;
-use ustd::os::windows::dev::ui::Menu::Menu;
 use ustd::os::windows::dev::ui::Text::Text;
 
 use ustd::os::windows::common::types::convertion::ToWindowTextConvertion;
