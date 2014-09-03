@@ -21,14 +21,13 @@ impl ToRustBoolConvertion for BOOL {
     </example>
 **/
 pub trait ToWindowTextConvertion {
-    // Vec<u16>
-    fn asText(&self) -> *const u16;
+    fn asText(&self) -> Vec<u16>;
 }
 
 impl<'a> ToWindowTextConvertion for &'a str {
-    fn asText(&self) -> *const u16 {
+    fn asText(&self) -> Vec<u16> {
         let mut newtext = Vec::from_slice(self.to_utf16().as_slice());
-        newtext.push(0u16);println!("<inner>:{};",newtext.as_ptr());
-        newtext.as_ptr()
+        newtext.push(0u16);
+        newtext
     }
 }

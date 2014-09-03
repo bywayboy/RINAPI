@@ -1,3 +1,5 @@
+#[allow(non_camel_case_types)]
+
 extern crate libc;
 
 use self::libc::types::os::arch::c95::{

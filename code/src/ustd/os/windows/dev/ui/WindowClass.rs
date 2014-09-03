@@ -51,15 +51,15 @@ impl WindowClass {
         WindowClass {
             raw : RawWindowClass {
                         style : WindowClassStyles::VerticalRedraw | WindowClassStyles::HorizontalRedraw , 
-                  lpfnWndProc : std::ptr::null()                                                  , 
-                   cbClsExtra : 0                                                                     ,
-                   cbWndExtra : 0                                                                     ,
-                    hInstance : std::ptr::mut_null()                                                  ,
-                        hIcon : std::ptr::mut_null()                                                  ,
-                      hCursor : std::ptr::mut_null()                                                  ,
-                hbrBackground : std::ptr::mut_null()                                                  ,
-                 lpszMenuName : "Application Menu".asText()                                           ,
-                lpszClassName : "Class".asText()                                                      ,
+                  lpfnWndProc : std::ptr::null()                                                        , 
+                   cbClsExtra : 0                                                                       ,
+                   cbWndExtra : 0                                                                       ,
+                    hInstance : std::ptr::mut_null()                                                    ,
+                        hIcon : std::ptr::mut_null()                                                    ,
+                      hCursor : std::ptr::mut_null()                                                    ,
+                hbrBackground : std::ptr::mut_null()                                                    ,
+                 lpszMenuName : "Application Menu".asText().as_ptr()                                    ,
+                lpszClassName : "Class".asText().as_ptr()                                               ,
             }
         }
     }
