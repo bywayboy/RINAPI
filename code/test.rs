@@ -6,12 +6,13 @@
 
 **/
 
+use rinapi::prelude::{
+	ToWindowTextConvertion , 
+	QuickService , 
+	MessageBoxStyles
+};
 
-use ustd::os::windows::common::types::convertion::ToWindowTextConvertion;
-use ustd::os::windows::quick::ApplicationService;
-use MBSB = ustd::os::windows::dev::ui::enums::MessageBoxStyles::Button;
-
-mod ustd;
+mod rinapi;
 
 fn cref(p : &int) {
 	println!("by ref way: {}" , *p);
@@ -28,7 +29,7 @@ fn main() {
 	let txt1 = "Hello".asText();
 	let txt2 = "World".asText();
 
-	ApplicationService::MessageBox(Some(txt1.as_ptr()),Some(txt2.as_ptr()),MBSB::OkCancel);
+	QuickService::MessageBox(Some(txt1.as_ptr()),Some(txt2.as_ptr()),MessageBoxStyles::Button::OkCancel);
 
 	cref(&7);
 	cptr(&7);
