@@ -7,15 +7,11 @@ use super::super::prelude::{
     UINT , WNDPROC , CCINT , HINSTANCE , HICON , 
     HCURSOR , HBRUSH , LPCTSTR , wapi , 
     ToWindowTextConvertion , Application , Cursor ,
-    Icon , Text , WindowProcedure , Atom , 
+    Icon , Text , WindowProcedure , Atom ,
     WindowService , Brush , WindowClassStyles , WindowClassStyle
 };
 
 pub struct WindowClassExtra {
-    raw : RawWindowClassExtra
-}
-
-struct RawWindowClassExtra {
            cbSize : UINT        , /* u32 */
             style : UINT        , /* WindowClassStyle */
       lpfnWndProc : WNDPROC     , /* WindowProcedure */
@@ -30,84 +26,82 @@ struct RawWindowClassExtra {
           hIconSm : HICON       , /* Icon */
 }
 
-pub type WNDCLASSEX = RawWindowClassExtra;
+pub type WNDCLASSEX = WindowClassExtra;
 
 impl WindowClassExtra {
     pub fn new() -> WindowClassExtra {
         WindowClassExtra {
-            raw : RawWindowClassExtra {
-                       cbSize : std::mem::size_of::<WNDCLASSEX>() as UINT   ,
-                        style : WindowClassStyles::VerticalRedraw   | 
-                                WindowClassStyles::HorizontalRedraw         , 
-                  lpfnWndProc : std::ptr::null()                            , 
-                   cbClsExtra : 0                                           ,
-                   cbWndExtra : 0                                           ,
-                    hInstance : std::ptr::mut_null()                        ,
-                        hIcon : std::ptr::mut_null()                        ,
-                      hCursor : std::ptr::mut_null()                        ,
-                hbrBackground : std::ptr::mut_null()                        ,
-                 lpszMenuName : "Application Menu".asText().as_ptr()        ,
-                lpszClassName : "Class".asText().as_ptr()                   ,
-                      hIconSm : std::ptr::mut_null()                        ,
-            }
+                   cbSize : std::mem::size_of::<WNDCLASSEX>() as UINT   ,
+                    style : WindowClassStyles::VerticalRedraw   | 
+                            WindowClassStyles::HorizontalRedraw         , 
+              lpfnWndProc : std::ptr::null()                            , 
+               cbClsExtra : 0                                           ,
+               cbWndExtra : 0                                           ,
+                hInstance : std::ptr::mut_null()                        ,
+                    hIcon : std::ptr::mut_null()                        ,
+                  hCursor : std::ptr::mut_null()                        ,
+            hbrBackground : std::ptr::mut_null()                        ,
+             lpszMenuName : "Application Menu".asText().as_ptr()        ,
+            lpszClassName : "Class".asText().as_ptr()                   ,
+                  hIconSm : std::ptr::mut_null()                        ,
         }
     }
 
     pub fn setSize(&mut self , size : u32) {
-        self.raw.cbSize = size;
+        self.cbSize = size;
     }
 
     pub fn setStyle(&mut self , style : WindowClassStyle) {
-        self.raw.style = style;
+        self.style = style;
     }
 
     pub fn setWindowProcedure(&mut self , proce : WindowProcedure) {
-        self.raw.lpfnWndProc = proce;
+        self.lpfnWndProc = proce;
     }
 
     pub fn setClassExtraSize(&mut self , size : i32) {
-        self.raw.cbClsExtra = size;
+        self.cbClsExtra = size;
     }
 
     pub fn setWindowExtraSize(&mut self , size : i32) {
-        self.raw.cbWndExtra = size;
+        self.cbWndExtra = size;
     }
 
     pub fn setApplication(&mut self , app : Application) {
-        self.raw.hInstance = app;
+        self.hInstance = app;
     }
 
     pub fn setIcon(&mut self , icon : Icon) {
-        self.raw.hIcon = icon;
+        self.hIcon = icon;
     }
 
     pub fn setCursor(&mut self , cursor : Cursor) {
-        self.raw.hCursor = cursor;
+        self.hCursor = cursor;
     }
 
     pub fn setBackground(&mut self , bg : Brush) {
-        self.raw.hbrBackground = bg;
+        self.hbrBackground = bg;
     }
 
     pub fn setMenuName(&mut self , name : Text) {
-        self.raw.lpszMenuName = name;
+        self.lpszMenuName = name;
     }
 
     pub fn setClassName(&mut self , name : Text) {
-        self.raw.lpszClassName = name;
+        self.lpszClassName = name;
     }
 
     pub fn setSmallIcon(&mut self , icon : Icon) {
-        self.raw.hIconSm = icon;
+        self.hIconSm = icon;
     }
 
     pub fn register(&self) -> Atom {
         unsafe {
-            wapi::WindowClass::RegisterClassExW(&self.raw)
+            wapi::WindowClass::RegisterClassExW(self as *const WNDCLASSEX)
         }
     }
 
     pub fn unregister(&self , app : Option<Application>) -> bool {
-        WindowService::UnregisterClass(self.raw.lpszClassName , app)
+        WindowService::UnregisterClass(self.lpszClassName , app)
     }
 }

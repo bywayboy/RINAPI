@@ -10,3 +10,5 @@ pub type WindowStyle = DWORD;
 pub type ExtendedWindowStyle = DWORD;
 
 pub type StockLogicalObject = CCINT;
+
+pub type WindowMessage = UINT;

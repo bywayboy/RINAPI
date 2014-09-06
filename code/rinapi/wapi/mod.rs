@@ -28,6 +28,11 @@ pub mod DLL;
 pub mod Icon;
 
 /**
+    <summary>Message Functions</summary>
+**/
+pub mod Message;
+
+/**
     <summary>Window Functions</summary>
 **/
 pub mod Window;
@@ -36,3 +41,8 @@ pub mod Window;
     <summary>Window Class Functions</summary>
 **/
 pub mod WindowClass;
+
+/**
+    <summary>Window Procedure Functions</summary>
+**/
+pub mod WindowProcedure;

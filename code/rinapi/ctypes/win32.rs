@@ -13,9 +13,15 @@ pub type CCINT = c_int;
 // WinDef.h:173 => typedef unsigned int UINT;
 pub type UINT = c_uint;
 
+// WinNT.h:333 => typedef long LONG;
+pub type LONG = c_long;
+
 pub type BOOL = c_int;
 
-pub type WNDPROC = *const c_void;
+// WinUser.h:62 => typedef LRESULT (CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM);
+//TODO
+//pub type WNDPROC = *const c_void;
+pub type WNDPROC = *extern fn(HWND,UINT,WPARAM,LPARAM)->LRESULT;
 
 // WinDef.h:155 => typedef unsigned short WORD;
 pub type WORD = c_ushort;
@@ -80,3 +86,6 @@ pub type LPARAM = LONG_PTR;
 
 // WinDef.h:249 => DECLARE_HANDLE(HGDIOBJ);
 pub type HGDIOBJ = HANDLE;
+
+// WinDef.h:185 => typedef LONG_PTR LRESULT;
+pub type LRESULT = LONG_PTR;

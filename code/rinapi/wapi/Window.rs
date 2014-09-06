@@ -53,4 +53,8 @@ extern "stdcall" {
         /*   _In_   */     hWnd : HWND  ,
         /*   _In_   */ nCmdShow : CCINT
     ) -> BOOL /* WINAPI */;
+
+    pub fn UpdateWindow(
+        /*   _In_   */ hWnd : HWND
+    ) -> BOOL;
 }

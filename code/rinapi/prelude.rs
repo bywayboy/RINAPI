@@ -6,17 +6,17 @@ pub use super::ctypes::win32::{
     CCINT , UINT , BOOL , WNDPROC , WORD , DWORD , ATOM , WCHAR ,
     LPCWSTR , LPCTSTR , PVOID , LPVOID , HANDLE , HWND , HINSTANCE , 
     HMENU , HICON , HCURSOR , HBRUSH , HMODULE , UINT_PTR , LONG_PTR , 
-    WPARAM , LPARAM , HGDIOBJ
+    WPARAM , LPARAM , HGDIOBJ , LONG , LRESULT
 };
 
 pub use super::etypes::{
-    DialogBoxCommand , 
-    MessageBoxStyle , 
-    WindowClassStyle , 
-    WindowShowStyleCommand , 
-    WindowStyle , 
-    ExtendedWindowStyle , 
-    StockLogicalObject
+    DialogBoxCommand        , 
+    MessageBoxStyle         , 
+    WindowClassStyle        , 
+    WindowShowStyleCommand  , 
+    WindowStyle             , 
+    ExtendedWindowStyle     , 
+    StockLogicalObject      ,
 };
 
 pub use super::utypes::{
@@ -28,14 +28,15 @@ pub use super::dll::DllService;
 pub use super::dll::Module::Module;
 
 pub use super::enums::{
-    CreateWindowOptions , 
-    DialogBoxCommands , 
-    ExtendedWindowStyles , 
-    MessageBoxStyles , 
-    WindowClassStyles , 
+    CreateWindowOptions     , 
+    DialogBoxCommands       , 
+    ExtendedWindowStyles    , 
+    MessageBoxStyles        , 
+    StockLogicalObjects     ,
+    WindowClassStyles       , 
+    WindowMessages          ,
     WindowShowStyleCommands , 
-    WindowStyles , 
-    StockLogicalObjects
+    WindowStyles
 };
 
 pub use super::gdi::Brush::Brush;
@@ -55,6 +56,16 @@ pub use super::ui::DialogBoxService;
 pub use super::ui::Icon::Icon;
 
 pub use super::ui::Menu::Menu;
+
+pub use super::ui::Message::{
+    Message , MSG , LPMSG
+};
+
+pub use super::ui::MessageService;
+
+pub use super::ui::Point::{
+    Point , POINT
+};
 
 pub use super::ui::ResourceService;
 
