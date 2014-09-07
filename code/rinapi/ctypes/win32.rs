@@ -22,7 +22,7 @@ pub type BOOL = c_int;
 //TODO
 //pub type WNDPROC = *const c_void;
 //pub type WNDPROC = *extern fn(HWND,UINT,WPARAM,LPARAM)->LRESULT;
-pub type WNDPROC = extern "system" fn(HWND , UINT , WPARAM , LPARAM) -> LRESULT;
+pub type WNDPROC = extern "stdcall" fn(HWND , UINT , WPARAM , LPARAM) -> LRESULT;
 
 // WinDef.h:155 => typedef unsigned short WORD;
 pub type WORD = c_ushort;

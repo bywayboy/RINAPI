@@ -6,7 +6,7 @@ use super::super::prelude::{
 };
 
 pub fn GetMessage(
-      message : &Message        ,
+      message : &mut Message        ,
        window : Option<Window>      , 
     minFilter : Option<UINT>        ,
     maxFilter : Option<UINT>
@@ -14,7 +14,7 @@ pub fn GetMessage(
 ) -> bool {
     unsafe {
         wapi::Message::GetMessageW(
-            message as LPMSG, 
+            message, 
             window.unwrap_or(std::ptr::mut_null()) , 
             minFilter.unwrap_or(0) , 
             maxFilter.unwrap_or(0)

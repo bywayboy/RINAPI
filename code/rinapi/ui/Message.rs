@@ -18,7 +18,7 @@ pub struct Message {
 pub type MSG = Message;
 
 // WTypes.h:980 => typedef struct tagMSG *LPMSG;
-pub type LPMSG = * MSG;
+pub type LPMSG = *mut MSG;
 
 impl Message {
     pub fn new() -> Message {

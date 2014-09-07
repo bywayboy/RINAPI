@@ -9,19 +9,22 @@ use libc::types::common::c95::c_void;
 use rinapi::prelude::*;
 mod rinapi;
 
-extern "system" fn window_procedure(
+extern "stdcall" fn window_procedure(
 	 window : Window , 
 	message : UINT , 
 	 wParam : WPARAM , 
 	 lParam : LPARAM
 ) -> LRESULT {
-	rinapi::prelude::QuickService::MessageBox(Some("In procedure.".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
-	//println!("coming coming coming");
+	//rinapi::prelude::QuickService::MessageBox(Some("In procedure.".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+
+	//println!("inner coming coming coming");
 	window.DefWindowProc(message , wParam , lParam)
 }
 
 fn main(){
-	QuickService::MessageBox(Some("Just Start".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+	//unsafe { ::std::rt::stack::record_sp_limit(0); }
+
+	//QuickService::MessageBox(Some("Just Start".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 	let application = QuickService::Application();
 	let appName = "RINAPI hello world".asText();
 	let new_class_name = "New Class".asText().as_ptr();
@@ -39,12 +42,12 @@ fn main(){
 	           class_name : new_class_name
 	});
 
-	QuickService::MessageBox(Some("begin Class registed".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+	//QuickService::MessageBox(Some("begin Class registed".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 
 	let r = window_class.RegisterClass();
 	//println!("register result::::{}" , r);
 
-	QuickService::MessageBox(Some("Class registed".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+	//QuickService::MessageBox(Some("Class registed".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 
 	let window = WindowService::CreateWindow(
 		Some(new_class_name) , 
@@ -60,21 +63,43 @@ fn main(){
 		None
 	);
 
-	QuickService::MessageBox(Some("Window Created".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+	println!("Window create started.");
 
-	window.ShowWindow(WindowShowStyleCommands::Maximize);
-	window.UpdateWindow();
+	if (window == std::ptr::mut_null())
+	{
+		println!("maybe window creation failure.");
+	}
+
+	println!("window creation ended.");
+	//QuickService::MessageBox(Some("Window Created".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+
+	let s = window.ShowWindow(WindowShowStyleCommands::Maximize);
+	let u = window.UpdateWindow();
+
+	println!("show:{} , update:{}" ,s ,u);
 
 	let mut message = Message::new();
 
-	QuickService::MessageBox(Some("Message created.".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+	//QuickService::MessageBox(Some("Message created.".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+
+	println!("get or not? {}" , message.GetMessage(None , Some(0) , Some(0)));
+
+	//QuickService::MessageBox(Some("Message tested.".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 
 	while message.GetMessage(None , Some(0) , Some(0)) {
-		QuickService::MessageBox(Some("got message".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+		//println!("go message");
+		//QuickService::MessageBox(Some("got message".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 		message.TranslateMessage();
-		QuickService::MessageBox(Some("message translated".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+		//println!("message translated.");
+		//QuickService::MessageBox(Some("message translated".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 		message.DispatchMessage();
+		//println!("message Dispatched.");
 	}
 
+	//QuickService::MessageBox(Some("Messaging queue ended.".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+
+	println!("Messaging queue ended")
+
 	//return message.wParam;
+	return;
 }
