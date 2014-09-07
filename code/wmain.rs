@@ -1,17 +1,21 @@
 #![feature(globs)]
+#![allow(non_snake_case_functions)]
+#![allow(dead_code)]
+#![allow(non_camel_case_types)]
+
 extern crate libc;
 use libc::types::common::c95::c_void;
 
 use rinapi::prelude::*;
 mod rinapi;
 
-extern fn window_procedure(
+extern "system" fn window_procedure(
 	 window : Window , 
 	message : UINT , 
 	 wParam : WPARAM , 
 	 lParam : LPARAM
 ) -> LRESULT {
-	QuickService::MessageBox(Some("In procedure.".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
+	rinapi::prelude::QuickService::MessageBox(Some("In procedure.".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 	//println!("coming coming coming");
 	window.DefWindowProc(message , wParam , lParam)
 }
@@ -20,11 +24,20 @@ fn main(){
 	QuickService::MessageBox(Some("Just Start".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 	let application = QuickService::Application();
 	let appName = "RINAPI hello world".asText();
-	let class_name = "New Class".asText().as_ptr();
+	let new_class_name = "New Class".asText().as_ptr();
 	
-	let mut window_class = WindowClass::new();
-		window_class.setWindowProcedure(&window_procedure as WindowProcedure);
-		window_class.setClassName(class_name);
+	let mut window_class = WindowClass::new(&WindowClassLayout{
+		      class_style : None    			,
+	     window_procedure : window_procedure 	,
+	     class_extra_size : 0                 	,
+	    window_extra_size : 0              		,
+	          application : application     	,
+	                 icon : None                ,
+	               cursor : None              	,
+	           background : None               	,
+	            menu_name : None                ,
+	           class_name : new_class_name
+	});
 
 	QuickService::MessageBox(Some("begin Class registed".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 
@@ -34,7 +47,7 @@ fn main(){
 	QuickService::MessageBox(Some("Class registed".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 
 	let window = WindowService::CreateWindow(
-		Some(class_name) , 
+		Some(new_class_name) , 
 		None , 
 		WindowStyles::OverLappedWindow , 
 		20 , 

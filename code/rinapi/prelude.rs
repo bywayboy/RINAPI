@@ -76,11 +76,11 @@ pub use super::ui::Window::{
 };
 
 pub use super::ui::WindowClass::{
-    WindowClass , WNDCLASS
+    WindowClass , WNDCLASS , WindowClassLayout
 };
 
 pub use super::ui::WindowClassExtra::{
-    WindowClassExtra , WNDCLASSEX
+    WindowClassExtra , WNDCLASSEX , WindowClassExtraLayout
 };
 
 pub use super::ui::WindowService;

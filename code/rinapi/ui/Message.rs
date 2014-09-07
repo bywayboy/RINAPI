@@ -5,6 +5,7 @@ use super::super::prelude::{
     Window , MessageService , ToRustBoolConvertion
 };
 
+#[repr(C)]
 pub struct Message {
        hwnd : HWND      , 
     message : UINT      , 
