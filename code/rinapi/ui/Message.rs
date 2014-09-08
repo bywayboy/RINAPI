@@ -2,7 +2,7 @@ extern crate std;
 
 use super::super::prelude::{
     HWND , UINT , WPARAM , LPARAM , DWORD , POINT , Point , wapi ,
-    Window , MessageService , ToRustBoolConvertion
+    Window , MessageService , ToRustBoolConvertion , CCINT
 };
 
 #[repr(C)]
@@ -35,7 +35,7 @@ impl Message {
         }
     }
 
-    pub fn GetMessage(&mut self             ,
+    pub fn GetMessage(&mut self         ,
            window : Option<Window>      , 
         minFilter : Option<UINT>        ,
         maxFilter : Option<UINT>
@@ -65,13 +65,19 @@ impl Message {
         )
     }
 
-    pub fn TranslateMessage(&self) -> bool {
+    /**
+        TranslateMessage
+    **/
+    pub fn translate(&self) -> bool {
         unsafe {
             wapi::Message::TranslateMessage(self as *const MSG).bool()
         }
     }
 
-    pub fn DispatchMessage(&self) -> bool {
+    /**
+        DispatchMessage
+    **/
+    pub fn dispatch(&self) -> bool {
         unsafe {
             wapi::Message::DispatchMessageW(self as *const MSG).bool()
         }

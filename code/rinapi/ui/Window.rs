@@ -1,3 +1,5 @@
+extern crate std;
+
 use super::super::prelude::{
 	HWND , ToRustBoolConvertion , WindowShowStyleCommand , wapi , 
 	UINT , WPARAM , LPARAM , LRESULT
@@ -6,28 +8,49 @@ use super::super::prelude::{
 pub type Window = HWND;
 
 pub trait WindowFunction {
-    fn ShowWindow(&self , style : WindowShowStyleCommand) -> bool;
+    /**
+        [C]isNone
+    **/
+    fn isNone(&self) -> bool;
 
-    fn UpdateWindow(&self) -> bool;
+    /**
+        [A]ShowWindow
+    **/
+    fn show(&self , style : WindowShowStyleCommand) -> bool;
 
-    fn DefWindowProc(&self ,
-    	message : UINT , wParam : WPARAM , lParam : LPARAM) -> LRESULT;
+    /**
+        [A]UpdateWindow
+    **/
+    fn update(&self) -> bool;
+
+    /**
+        [A]DefWindowProc
+    **/
+    fn pass(&self ,
+    	message : UINT , 
+        wParam : WPARAM , 
+        lParam : LPARAM
+    ) -> LRESULT;
 }
 
 impl WindowFunction for Window {
-    fn ShowWindow(&self , style : WindowShowStyleCommand) -> bool {
+    fn isNone(&self) -> bool {
+        *self == std::ptr::mut_null()
+    }
+
+    fn show(&self , style : WindowShowStyleCommand) -> bool {
         unsafe {
             wapi::Window::ShowWindow(*self , style).bool()
         }
     }
 
-    fn UpdateWindow(&self) -> bool {
+    fn update(&self) -> bool {
     	unsafe {
     		wapi::Window::UpdateWindow(*self).bool()
     	}
     }
 
-    fn DefWindowProc(&self ,
+    fn pass(&self ,
     	message : UINT , 
     	 wParam : WPARAM ,
     	 lParam : LPARAM

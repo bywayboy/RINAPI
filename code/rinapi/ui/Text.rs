@@ -1,3 +1,5 @@
+extern crate std;
+
 use super::super::prelude::{
 	LPCTSTR
 };

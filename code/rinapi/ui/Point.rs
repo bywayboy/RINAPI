@@ -17,12 +17,4 @@ impl Point {
 			y : ny ,
 		}
 	}
-
-	pub fn setX(&mut self , nx : LONG) {
-		self.x = nx;
-	}
-
-	pub fn setY(&mut self , ny : LONG) {
-		self.y = ny;
-	}
 }

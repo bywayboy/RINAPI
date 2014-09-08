@@ -33,6 +33,11 @@ pub mod Icon;
 pub mod Message;
 
 /**
+    <summary>Multimedia Functions</summary>
+**/
+pub mod Multimedia;
+
+/**
     <summary>Window Functions</summary>
 **/
 pub mod Window;

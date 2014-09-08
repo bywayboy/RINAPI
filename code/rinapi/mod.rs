@@ -36,6 +36,7 @@ pub mod enums;
 pub mod ui;
 pub mod gdi;
 pub mod dll;
+pub mod mm;
 
 pub mod quick;
 

@@ -17,8 +17,38 @@ extern "stdcall" fn window_procedure(
 ) -> LRESULT {
 	//rinapi::prelude::QuickService::MessageBox(Some("In procedure.".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 
+	match message {
+		WindowMessages::Create => {
+			let ok = MultimediaService::playSound("helloworld.wav".asText().as_ptr() , None , 
+				SoundPlayOptions::FileName | SoundPlayOptions::Async
+			);
+			if ok {
+				println!("sound played!!");
+			}
+			else {
+				println!("sound play with failure!!");
+			}
+			return PostWindowMessages::Normal;
+		}
+		/*
+		WindowMessages::Paint => {
+			return PostWindowMessages::Normal;
+		} ,
+		*/
+		WindowMessages::Destroy => {
+			MessageService::postQuit(PostWindowMessages::Normal);
+			return PostWindowMessages::Normal;
+		}
+
+		_ => {
+			;
+		}
+	}
+
+	return window.pass(message , wParam , lParam);
+
 	//println!("inner coming coming coming");
-	window.DefWindowProc(message , wParam , lParam)
+	
 }
 
 fn main(){
@@ -53,10 +83,10 @@ fn main(){
 		Some(new_class_name) , 
 		None , 
 		WindowStyles::OverLappedWindow , 
-		20 , 
-		20 , 
-		800 , 
-		600 , 
+		CreateWindowOptions::UseDefault , 
+		CreateWindowOptions::UseDefault , 
+		CreateWindowOptions::UseDefault , 
+		CreateWindowOptions::UseDefault , 
 		None , 
 		None , 
 		Some(application) , 
@@ -65,16 +95,15 @@ fn main(){
 
 	println!("Window create started.");
 
-	if (window == std::ptr::mut_null())
-	{
+	if window == std::ptr::mut_null() {
 		println!("maybe window creation failure.");
 	}
 
 	println!("window creation ended.");
 	//QuickService::MessageBox(Some("Window Created".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
 
-	let s = window.ShowWindow(WindowShowStyleCommands::Maximize);
-	let u = window.UpdateWindow();
+	let s = window.show(WindowShowStyleCommands::Maximize);
+	let u = window.update();
 
 	println!("show:{} , update:{}" ,s ,u);
 
@@ -89,10 +118,10 @@ fn main(){
 	while message.GetMessage(None , Some(0) , Some(0)) {
 		//println!("go message");
 		//QuickService::MessageBox(Some("got message".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
-		message.TranslateMessage();
+		message.translate();
 		//println!("message translated.");
 		//QuickService::MessageBox(Some("message translated".asText().as_ptr()) , None , MessageBoxStyles::Button::OnlyOk);
-		message.DispatchMessage();
+		message.dispatch();
 		//println!("message Dispatched.");
 	}
 

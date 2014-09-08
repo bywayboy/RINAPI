@@ -1,7 +1,7 @@
 extern crate std;
 
 use super::super::prelude::{
-    wapi , ToRustBoolConvertion , LPMSG ,
+    wapi , ToRustBoolConvertion , LPMSG , CCINT ,
     Message , Window , UINT , ToRustBoolConvertion
 };
 
@@ -19,5 +19,14 @@ pub fn GetMessage(
             minFilter.unwrap_or(0) , 
             maxFilter.unwrap_or(0)
         ).bool()
+    }
+}
+
+/**
+    [A]PostQuitMessageW
+**/
+pub fn postQuit(nExitCode : CCINT) {
+    unsafe {
+        wapi::Message::PostQuitMessage(nExitCode);
     }
 }

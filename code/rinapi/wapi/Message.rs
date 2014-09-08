@@ -3,7 +3,7 @@
 **/
 
 use super::super::prelude::{
-    BOOL , LPMSG , HWND , UINT , MSG , LRESULT ,
+    BOOL , LPMSG , HWND , UINT , MSG , LRESULT , CCINT ,
     ToRustBoolConvertion
 };
 
@@ -23,4 +23,8 @@ extern "stdcall" {
     pub fn DispatchMessageW(
         /*   _In_   */ lpMsg : *const MSG
     ) -> LRESULT /* WINAPI */;
+
+    pub fn PostQuitMessage(
+        /*   _In_   */ nExitCode : CCINT
+    ) /* VOID WINAPI */;
 }

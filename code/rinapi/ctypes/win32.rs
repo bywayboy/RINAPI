@@ -19,9 +19,6 @@ pub type LONG = c_long;
 pub type BOOL = c_int;
 
 // WinUser.h:62 => typedef LRESULT (CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM);
-//TODO
-//pub type WNDPROC = *const c_void;
-//pub type WNDPROC = *extern fn(HWND,UINT,WPARAM,LPARAM)->LRESULT;
 pub type WNDPROC = extern "stdcall" fn(HWND , UINT , WPARAM , LPARAM) -> LRESULT;
 
 // WinDef.h:155 => typedef unsigned short WORD;

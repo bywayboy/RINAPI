@@ -17,6 +17,8 @@ pub use super::etypes::{
     WindowStyle             , 
     ExtendedWindowStyle     , 
     StockLogicalObject      ,
+    WindowMessage           ,
+    SoundPlayOption         
 };
 
 pub use super::utypes::{
@@ -32,6 +34,8 @@ pub use super::enums::{
     DialogBoxCommands       , 
     ExtendedWindowStyles    , 
     MessageBoxStyles        , 
+    PostWindowMessages      ,
+    SoundPlayOptions        ,
     StockLogicalObjects     ,
     WindowClassStyles       , 
     WindowMessages          ,
@@ -42,6 +46,8 @@ pub use super::enums::{
 pub use super::gdi::Brush::Brush;
 pub use super::gdi::GdiObject::GdiObject;
 pub use super::gdi::DCService;
+
+pub use super::mm::MultimediaService;
 
 pub use super::quick::QuickService;
 
