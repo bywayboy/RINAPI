@@ -1,9 +1,9 @@
 use super::super::prelude::{
-	GdiObject
+	GdiObject , StockLogicalObject , wapi
 };
-/*
-pub fn GetStockObject() -> GdiObject {
+
+pub fn GetStockObject(stock : StockLogicalObject) -> GdiObject {
     unsafe {
-        winapi::DC::GetStockObjectW(0)
+        wapi::DC::GetStockObject(stock)
     }
-}*/
+}

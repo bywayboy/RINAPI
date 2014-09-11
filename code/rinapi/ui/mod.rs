@@ -1,12 +1,13 @@
 pub mod Application;
 pub mod Cursor;
+pub mod CursorService;
 pub mod DialogBoxService;
 pub mod Icon;
+pub mod IconService;
 pub mod Menu;
 pub mod Message; 
 pub mod MessageService;
 pub mod Point;
-pub mod ResourceService;
 pub mod Text;
 pub mod Window;
 pub mod WindowClass;

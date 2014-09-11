@@ -36,6 +36,8 @@ pub use super::enums::{
     MessageBoxStyles        , 
     PostWindowMessages      ,
     SoundPlayOptions        ,
+    StandardCursors         ,
+    StandardIcons           ,
     StockLogicalObjects     ,
     WindowClassStyles       , 
     WindowMessages          ,
@@ -52,7 +54,7 @@ pub use super::mm::MultimediaService;
 pub use super::quick::QuickService;
 
 pub use super::ui::Application::{
-    Application , IconFunctionInApplication
+    Application , ResourceFunctionInApplication
 };
 
 pub use super::ui::Cursor::Cursor;
@@ -73,7 +75,9 @@ pub use super::ui::Point::{
     Point , POINT
 };
 
-pub use super::ui::ResourceService;
+pub use super::ui::{
+    CursorService , IconService
+};
 
 pub use super::ui::Text::Text;
 

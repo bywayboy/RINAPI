@@ -65,9 +65,9 @@ fn main(){
 	     class_extra_size : 0                 	,
 	    window_extra_size : 0              		,
 	          application : application     	,
-	                 icon : None                ,
-	               cursor : None              	,
-	           background : None               	,
+	                 icon : Some( IconService::load(StandardIcons::Warning) )                ,
+	               cursor : Some(CursorService::load(StandardCursors::Wait))              	,
+	           background : Some(DCService::GetStockObject(StockLogicalObjects::DarkGrayBrush)) ,
 	            menu_name : None                ,
 	           class_name : new_class_name
 	});
