@@ -1,4 +1,4 @@
-pub mod DCService;
+pub mod DeviceContextService;
 
 pub mod Brush;
 pub mod GdiObject;

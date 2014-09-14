@@ -10,7 +10,7 @@ pub mod Cursor;
 /**
     <summary>Device Context Functions</summary>
 **/
-pub mod DC;
+pub mod DeviceContext;
 
 /**
     <summary>Dialog Box Functions</summary>

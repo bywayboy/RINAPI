@@ -4,6 +4,6 @@ use super::super::prelude::{
 
 pub fn GetStockObject(stock : StockLogicalObject) -> GdiObject {
     unsafe {
-        wapi::DC::GetStockObject(stock)
+        wapi::DeviceContext::GetStockObject(stock)
     }
 }
